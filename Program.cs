@@ -1,36 +1,73 @@
 ﻿using System;
 
-namespace task1_3D
+namespace Test
 {
-    class Student_Data // Base class
+
+    public abstract class Student_data
     {
-        public virtual void name_student()
+        string _name;
+        int _age;
+        string _section;
+
+
+        public Student_data(string name, int age, string section)
         {
-            Console.WriteLine("The name of student is: XYZ");
+            _name = name;
+            _age = age;
+            _section = section;
+        }
+
+        public virtual void printNameSection()
+        {
+            Console.WriteLine("Name: " + _name + " in Section: " + _section);
+        }
+
+        public virtual void increaseage(int inc)
+        {
+            _age += inc;
+            Console.WriteLine("Increased age is: " + _age);
         }
     }
 
-    class Student_Data2: Student_Data
+    public class sectionX : Student_data
     {
-        public override void name_student()
+        public sectionX(string _name, int _age, string _section) : base(_name,_age,_section)
         {
-            Console.WriteLine("The name of student is: ABC");
+            
+        }
+
+        public override void printNameSection()
+        {
+            base.printNameSection();
+        }
+
+        public override void increaseage(int inc)
+        {
+            base.increaseage(inc);
         }
     }
 
-
-    class Test
+    public class sectionY: Student_data
     {
-        static void Main(string[] args)
+        string blood_group;
+        public sectionY(string _name,int _age,string _section,string _blood_group) : base(_name,_age,_section)
         {
-            Student_Data a = new Student_Data();
-            Student_Data b = new Student_Data2();
-            Student_Data2 c = new Student_Data2();
-            Student_Data d = c;  // Upcasting 
+            blood_group = _blood_group;
+        }
 
-            a.name_student();
-            b.name_student();
-            d.name_student();
+        public override void printNameSection()
+        {
+            base.printNameSection();
+        }
+
+        public override void increaseage(int inc)
+        {
+            base.increaseage(inc);
+        }
+
+        public void bloodgroupstudent()
+        {
+            Console.WriteLine("The blood group is: " + blood_group);
         }
     }
 }
